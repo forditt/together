@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>˚ʚ♡ɞ˚</title>
+    <link rel="icon" href="icons/1.png">
+    
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <canvas id="heartCanvas"></canvas>
+    <div class="background-blur"></div> <!-- Шар розмиття -->
+    <div id="content">
+        <h1 id="question">Я буду берегти тебе, обіцяю! Кохаю тебе, моє серденько ˚ʚ♡ɞ˚</h1>
+    </div>
+    
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.body.classList.add("loaded");
+
+        // Якщо сторінка оновилася — автоматично повертаємо на index.html
+        setTimeout(() => {
+            document.body.classList.add("fade-out");
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 500);
+        }, 10000); // Час до повернення (3 секунди)
+    });
+    </script>
+
+    <script src="js/hearts.js"></script>
+</body>
+</html>

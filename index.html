@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Разом?</title>
+    <link rel="icon" href="icons/1.png">
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <canvas id="heartCanvas"></canvas>
+    <div class="background-blur"></div> <!-- Шар розмиття -->
+    <div id="content">
+        <h1 id="question">Ми будемо разом завжди?</h1>
+        <div id="buttons">
+            <button id="yes" onclick="redirect()">Так</button>
+            <button id="no" onclick="changeQuestion()">Ні</button>
+        </div>
+    </div>
+    
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.body.classList.add("loaded");
+    });
+
+    function redirect() {
+        document.body.classList.add("fade-out");
+        sessionStorage.setItem("reloaded", "false"); // Позначаємо, що сторінка ще не оновлювалася
+        setTimeout(() => {
+            window.location.href = 'index2.html';
+        }, 500);
+    }
+
+let count = 0;
+let questions = [
+    "...",
+    "Чому ні... Так! ‹𝟹",
+    "Подумай ще раз! ✿",
+    "Ти впевнена?",
+    "Останній шанс! ₍^. .^₎⟆",
+    "Більше нема виходу!"
+];
+
+function changeQuestion() {
+    let question = document.getElementById('question');
+    let yesButton = document.getElementById('yes');
+    let noButton = document.getElementById('no');
+
+    if (count < questions.length - 1) {
+        // Зникає текст плавно
+        question.style.opacity = '0';
+        question.style.transform = 'translateY(10px)';
+
+        setTimeout(() => {
+            question.textContent = questions[count]; // Міняємо текст
+            question.style.opacity = '1';
+            question.style.transform = 'translateY(0)';
+        }, 500); // Чекаємо перед появою нового тексту
+    }
+
+    // Збільшуємо кнопку "Так"
+    let newSize = 70 + count * 20;
+    yesButton.style.fontSize = `${newSize}px`;
+    yesButton.style.padding = `${10 + count * 2}px ${20 + count * 4}px`;
+    yesButton.style.borderRadius = '40px';
+
+    count++;
+
+    // Видаляємо кнопку "Ні" після 5 кліків
+    if (count >= 5) {
+        noButton.style.opacity = '0';
+        noButton.style.transform = 'translateY(-20px)';
+        setTimeout(() => {
+            noButton.remove();
+        }, 500);
+    }
+}
+
+function redirect() {
+    window.location.href = 'index2.html';
+}
+
+    </script>
+
+    <script src="js/hearts.js"></script>
+</body>
+</html>
